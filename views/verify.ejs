@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Chat Verfication</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h3>Verification for deleting the chat with id: <%= deletedChat._id %></h3>
+      
+    <div class="deletedChat">
+        <p><b>From :</b>  <i><%= deletedChat.from %></i></p>
+        <div class="deletedMsg">
+            <p><%= deletedChat.message %></p>
+        </div>
+        <p><b>Received By: </b><i><%= deletedChat.to %></i></p>
+        <hr/>
+        <p><b><%= deletedChat.updated_at ? "Updated at:  " + deletedChat.updated_at.toString().split(" ")[4] : "Created at:  " + deletedChat.date.toString().split(" ")[4]  %></b></p>
+        <p><%= deletedChat.updated_at ? deletedChat.updated_at.toString().split(" ").slice(0,4).join("-") : deletedChat.date.toString().split(" ").slice(0,4).join("-")  %></p>
+    </div>
+    <br /> <br/>
+
+    <h4>Do you really want to delete this chat?</h4>
+    <form method="POST" action="/chats/<%= deletedChat._id %>?_method=DELETE">
+        <input type="hidden" name="_method" value="DELETE">
+        <button>Yes</button>
+    </form>
+    <br>
+    <!-- <form action="/chats">
+        <button>No</button>
+    </form> -->
+
+    <button onclick="location.href='/chats'">No</button>
+</body>
+</html>
